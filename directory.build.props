@@ -1,0 +1,35 @@
+<Project>
+
+    <PropertyGroup>
+        <Copyright>xEsteem@github</Copyright>
+        <Authors>xEsteem@github</Authors>
+        <Company>xEsteem@github</Company>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <DefaultItemExcludes>$(DefaultItemExcludes);*.slnf</DefaultItemExcludes>
+        <SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
+	    <LangVersion>11.0</LangVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <Optimize>false</Optimize>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+        <Optimize>true</Optimize>
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>none</DebugType>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+</Project>
