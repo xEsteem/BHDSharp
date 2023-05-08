@@ -25,9 +25,8 @@ public class BhdRestClient : IBhdRestClient
 
     #region Constructors
 
-    public BhdRestClient(string apiKey)
+    public BhdRestClient()
     {
-
         RestClientOptions options = new(_apiUriBase);
         this._restClient = new RestClient(
             options,
@@ -48,8 +47,8 @@ public class BhdRestClient : IBhdRestClient
         {
             throw new Exception("ApiKey must be assigned to the search payload.");
         }
-        
-        RestRequest request = this.CreateRestSearchRequest(search);
+
+        RestRequest request = CreateRestSearchRequest(search);
         SearchResult searchResult = this._restClient.Post<SearchResult>(request);
         return searchResult;
     }
@@ -62,7 +61,7 @@ public class BhdRestClient : IBhdRestClient
             throw new Exception("ApiKey must be assigned to the search payload.");
         }
 
-        RestRequest request = this.CreateRestSearchRequest(search);
+        RestRequest request = CreateRestSearchRequest(search);
         SearchResult searchResult = await this._restClient.PostAsync<SearchResult>(request);
         return searchResult;
     }
@@ -125,7 +124,7 @@ public class BhdRestClient : IBhdRestClient
         return results;
     }
 
-    private RestRequest CreateRestSearchRequest(Search search)
+    private static RestRequest CreateRestSearchRequest(Search search)
     {
         RestRequest request = new($"torrents/{search.ApiKey}")
         {
