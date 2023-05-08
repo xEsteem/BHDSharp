@@ -4,16 +4,50 @@
 
 namespace BHDSharp.Data.Search;
 
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using BHDSharp.Converters;
 
 public class Search
 {
+    #region Constructors
+
+    public Search(string apiKey, string rssKey)
+        : this(apiKey)
+    {
+        if (string.IsNullOrWhiteSpace(rssKey))
+        {
+            throw new ArgumentNullException(nameof(rssKey));
+        }
+
+        this.RssKey = rssKey;
+    }
+
+    public Search(string apiKey)
+        : this()
+    {
+        if (string.IsNullOrWhiteSpace(apiKey))
+        {
+            throw new ArgumentNullException(nameof(apiKey));
+        }
+
+        this.ApiKey = apiKey;
+    }
+
+    public Search()
+    {
+    }
+
+    #endregion
+
     #region Properties
 
     [JsonPropertyName("action")]
     public string Action { get; } = "search";
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+    public string ApiKey { get; }
 
     [JsonPropertyName("alive")]
     public bool Alive { get; set; }
@@ -146,10 +180,7 @@ public class Search
     public bool Rewind { get; set; }
 
     [JsonPropertyName("rsskey")]
-    public string RssKey { get; set; }
-
-    [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
-    public string ApiKey { get; set; }
+    public string RssKey { get; }
 
     [JsonPropertyName("search")]
     public string SearchTerm { get; set; }
