@@ -114,7 +114,7 @@ public class Search
     public OrderBy OrderBy { get; set; }
 
     [JsonPropertyName("page")]
-    public int Page { get; set; }
+    public int Page { get; set; } = 1;
 
     [JsonPropertyName("promo25")]
     public bool Promo25 { get; set; }

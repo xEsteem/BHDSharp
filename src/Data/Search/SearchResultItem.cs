@@ -6,6 +6,7 @@ namespace BHDSharp.Data.Search;
 
 using System;
 using System.Text.Json.Serialization;
+using BHDSharp.Converters;
 
 public class SearchResultItem
 {
@@ -14,18 +15,22 @@ public class SearchResultItem
     [JsonPropertyName("bhd_rating")]
     public float BhdRating { get; set; }
 
+    [JsonConverter(typeof(DateTimeConverter))]
     [JsonPropertyName("bumped_at")]
     public DateTime BumpedAt { get; set; }
 
     [JsonPropertyName("category")]
     public string Category { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("commentary")]
     public bool Commentary { get; set; }
 
+    [JsonConverter(typeof(DateTimeConverter))]
     [JsonPropertyName("created_at")]
     public DateTime CreatedAt { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("dv")]
     public bool DolbyVision { get; set; }
 
@@ -35,15 +40,19 @@ public class SearchResultItem
     [JsonPropertyName("folder_name")]
     public string FolderName { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("freeleech")]
     public bool Freeleech { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("hdr10")]
     public bool Hdr10 { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("hdr10+")]
     public bool Hdr10Plus { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("hlg")]
     public bool Hlg { get; set; }
 
@@ -59,33 +68,41 @@ public class SearchResultItem
     [JsonPropertyName("info_hash")]
     public string InfoHash { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("internal")]
     public bool Internal { get; set; }
 
     [JsonPropertyName("leechers")]
     public uint Leechers { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("limited")]
     public bool Limited { get; set; }
 
     [JsonPropertyName("name")]
     public string Name { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("promo25")]
     public bool Promo25 { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("promo50")]
     public bool Promo50 { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("promo75")]
     public bool Promo75 { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("refund")]
     public bool Refund { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("rescue")]
     public bool Rescue { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("rewind")]
     public bool Rewind { get; set; }
 
@@ -104,6 +121,7 @@ public class SearchResultItem
     [JsonPropertyName("tmdb_rating")]
     public float TmdbRating { get; set; }
 
+    [JsonConverter(typeof(BoolConverter))]
     [JsonPropertyName("tv_pack")]
     public bool TvPack { get; set; }
 
