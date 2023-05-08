@@ -6,6 +6,7 @@ namespace BHDSharp.Data.Search;
 
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using BHDSharp.Converters;
 
 public class Search
 {
@@ -17,18 +18,21 @@ public class Search
     [JsonPropertyName("alive")]
     public bool Alive { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("audios")]
     public IEnumerable<string> AudioLanguages { get; set; }
 
     [JsonPropertyName("h264")]
     public bool Avc { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("categories")]
     public IEnumerable<string> Categories { get; set; }
 
     [JsonPropertyName("completed")]
     public bool Completed { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("countries")]
     public IEnumerable<string> Countries { get; set; }
 
@@ -38,6 +42,7 @@ public class Search
     [JsonPropertyName("dying")]
     public bool Dying { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("features")]
     public IEnumerable<string> Features { get; set; }
 
@@ -56,9 +61,11 @@ public class Search
     [JsonPropertyName("genres_type")]
     public MatchType GenreMatch { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("genres")]
     public IEnumerable<string> Genres { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("groups")]
     public IEnumerable<string> Groups { get; set; }
 
@@ -152,9 +159,11 @@ public class Search
     [JsonPropertyName("sort")]
     public SortBy SortBy { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("sources")]
     public IEnumerable<string> Sources { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("languages")]
     public IEnumerable<string> SpokenLanguages { get; set; }
 
@@ -164,6 +173,7 @@ public class Search
     [JsonPropertyName("stream")]
     public bool StreamOptimized { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("subtitles")]
     public IEnumerable<string> SubtitleLanguages { get; set; }
 
@@ -173,6 +183,7 @@ public class Search
     [JsonPropertyName("pack")]
     public bool TvPack { get; set; }
 
+    [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("types")]
     public IEnumerable<string> Types { get; set; }
 
