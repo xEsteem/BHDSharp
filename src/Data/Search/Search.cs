@@ -4,7 +4,9 @@
 
 namespace BHDSharp.Data.Search;
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 using BHDSharp.Converters;
 
@@ -47,7 +49,7 @@ public class Search
     public IEnumerable<string> Features { get; set; }
 
     [JsonPropertyName("features_type")]
-    public MatchType FeaturesMatch { get; set; }
+    public MatchType FeaturesMatch { get; set; } = MatchType.All;
 
     [JsonPropertyName("file_name")]
     public string FileName { get; set; }
@@ -59,7 +61,7 @@ public class Search
     public bool FreeLeech { get; set; }
 
     [JsonPropertyName("genres_type")]
-    public MatchType GenreMatch { get; set; }
+    public MatchType GenreMatch { get; set; } = MatchType.All;
 
     [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("genres")]
@@ -94,19 +96,19 @@ public class Search
     public uint MaximumYear { get; set; }
 
     [JsonPropertyName("min_bhd")]
-    public int MinimumBhdRating { get; set; }
+    public float MinimumBhdRating { get; set; }
 
     [JsonPropertyName("vote_bhd")]
     public int MinimumBhdVotes { get; set; }
 
     [JsonPropertyName("min_imdb")]
-    public int MinimumImdbRating { get; set; }
+    public float MinimumImdbRating { get; set; }
 
     [JsonPropertyName("vote_imdb")]
     public int MinimumImdbVotes { get; set; }
 
     [JsonPropertyName("min_tmdb")]
-    public int MinimumTmdbRating { get; set; }
+    public float MinimumTmdbRating { get; set; }
 
     [JsonPropertyName("vote_tmdb")]
     public int MinimumTmdbVotes { get; set; }
@@ -117,8 +119,9 @@ public class Search
     [JsonPropertyName("notdownloaded")]
     public bool NotDownloaded { get; set; }
 
+    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
     [JsonPropertyName("order")]
-    public OrderBy OrderBy { get; set; }
+    public OrderBy OrderBy { get; set; } = OrderBy.Descending;
 
     [JsonPropertyName("page")]
     public int Page { get; set; } = 1;
@@ -156,8 +159,9 @@ public class Search
     [JsonPropertyName("size")]
     public long Size { get; set; }
 
+    [JsonConverter(typeof(JsonStringEnumMemberConverter))]
     [JsonPropertyName("sort")]
-    public SortBy SortBy { get; set; }
+    public SortBy SortBy { get; set; } = SortBy.BumpedAt;
 
     [JsonConverter(typeof(StringEnumerableConverter))]
     [JsonPropertyName("sources")]

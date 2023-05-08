@@ -6,10 +6,13 @@ namespace BHDSharp;
 
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using BHDSharp.Data.Search;
 using BHDSharp.Services;
 using RestSharp;
+using RestSharp.Serializers.Json;
 
 public class BhdRestClient : IBhdRestClient
 {
@@ -33,7 +36,12 @@ public class BhdRestClient : IBhdRestClient
         this._apiKey = apiKey;
 
         RestClientOptions options = new(_apiUriBase);
-        this._restClient = new RestClient(options);
+        this._restClient = new RestClient(
+            options,
+            configureSerialization: s => s.UseSystemTextJson(new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
+            }));
     }
 
     #endregion

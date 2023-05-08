@@ -15,7 +15,7 @@ public static class KnownTypes
     public const string Dvd9 = "DVD 9";
     public const string DvdRemux = "DVD Remux";
     public const string Other = "Other";
-    public const string Reg576p = "576p";
+    public const string Res576p = "576p";
     public const string Res1080i = "1080i";
     public const string Res1080p = "1080p";
     public const string Res2160p = "2160p";

@@ -4,8 +4,12 @@
 
 namespace BHDSharp.Data.Search;
 
+using System.Runtime.Serialization;
+
 public enum OrderBy
 {
-    Ascending,
-    Descending
+    [EnumMember(Value = "desc")]
+    Descending,
+    [EnumMember(Value = "asc")]
+    Ascending
 }
