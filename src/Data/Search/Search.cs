@@ -148,6 +148,9 @@ public class Search
     [JsonPropertyName("rsskey")]
     public string RssKey { get; set; }
 
+    [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+    public string ApiKey { get; set; }
+
     [JsonPropertyName("search")]
     public string SearchTerm { get; set; }
 

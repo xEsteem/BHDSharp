@@ -19,7 +19,6 @@ public class BhdRestClient : IBhdRestClient
     #region Fields
 
     private static readonly Uri _apiUriBase = new("https://beyond-hd.me/api");
-    private readonly string _apiKey;
     private readonly RestClient _restClient;
 
     #endregion
@@ -28,12 +27,6 @@ public class BhdRestClient : IBhdRestClient
 
     public BhdRestClient(string apiKey)
     {
-        if (string.IsNullOrWhiteSpace(apiKey))
-        {
-            throw new ArgumentNullException(nameof(apiKey));
-        }
-
-        this._apiKey = apiKey;
 
         RestClientOptions options = new(_apiUriBase);
         this._restClient = new RestClient(
@@ -51,6 +44,11 @@ public class BhdRestClient : IBhdRestClient
     /// <inheritdoc />
     public SearchResult Search(Search search)
     {
+        if (string.IsNullOrWhiteSpace(search.ApiKey))
+        {
+            throw new Exception("ApiKey must be assigned to the search payload.");
+        }
+        
         RestRequest request = this.CreateRestSearchRequest(search);
         SearchResult searchResult = this._restClient.Post<SearchResult>(request);
         return searchResult;
@@ -59,6 +57,11 @@ public class BhdRestClient : IBhdRestClient
     /// <inheritdoc />
     public async Task<SearchResult> SearchAsync(Search search)
     {
+        if (string.IsNullOrWhiteSpace(search.ApiKey))
+        {
+            throw new Exception("ApiKey must be assigned to the search payload.");
+        }
+
         RestRequest request = this.CreateRestSearchRequest(search);
         SearchResult searchResult = await this._restClient.PostAsync<SearchResult>(request);
         return searchResult;
@@ -67,6 +70,11 @@ public class BhdRestClient : IBhdRestClient
     /// <inheritdoc />
     public IReadOnlyCollection<SearchResultItem> SearchComprehensive(Search search)
     {
+        if (string.IsNullOrWhiteSpace(search.ApiKey))
+        {
+            throw new Exception("ApiKey must be assigned to the search payload.");
+        }
+
         search.Page = 1;
 
         SearchResult initialResponse = this.Search(search);
@@ -91,6 +99,11 @@ public class BhdRestClient : IBhdRestClient
     /// <inheritdoc />
     public async Task<IReadOnlyCollection<SearchResultItem>> SearchComprehensiveAsync(Search search)
     {
+        if (string.IsNullOrWhiteSpace(search.ApiKey))
+        {
+            throw new Exception("ApiKey must be assigned to the search payload.");
+        }
+
         search.Page = 1;
 
         SearchResult initialResponse = await this.SearchAsync(search);
@@ -114,7 +127,7 @@ public class BhdRestClient : IBhdRestClient
 
     private RestRequest CreateRestSearchRequest(Search search)
     {
-        RestRequest request = new($"torrents/{this._apiKey}")
+        RestRequest request = new($"torrents/{search.ApiKey}")
         {
             Method = Method.Post
         };

@@ -8,7 +8,7 @@ public static class KnownInternalGroups
 {
     #region Fields
 
-    public const string Beyondhd = "BeyondHd";
+    public const string Beyondhd = "BeyondHD";
     public const string Bhdstudio = "BHDStudio";
     public const string Bmf = "BMF";
     public const string Crfw = "CRFW";
