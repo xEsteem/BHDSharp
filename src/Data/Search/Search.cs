@@ -47,7 +47,7 @@ public class Search
     public string Action { get; } = "search";
 
     [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
-    public string ApiKey { get; }
+    public string ApiKey { get; set; }
 
     [JsonPropertyName("alive")]
     public bool Alive { get; set; }
@@ -180,7 +180,7 @@ public class Search
     public bool Rewind { get; set; }
 
     [JsonPropertyName("rsskey")]
-    public string RssKey { get; }
+    public string RssKey { get; set; }
 
     [JsonPropertyName("search")]
     public string SearchTerm { get; set; }
